@@ -1,5 +1,7 @@
 import csv
+import imp
 from contact import create,update,delete,search,read
+import os.path
 
 registered_user = [] 
 
@@ -118,10 +120,12 @@ def admin(username):
 
 
 def main():
-    with open('users.csv','r') as csvfile:
-        reader = csv.reader(csvfile,delimiter=',' )
-        for row in reader:
-            registered_user.append(row)
+    file_exists = os.path.exists("users.csv")
+    if file_exists:
+        with open('users.csv','r') as csvfile:
+            reader = csv.reader(csvfile,delimiter=',' )
+            for row in reader:
+                registered_user.append(row)
     print("-------------------------------------------------------")  
     print("***welcom to contact app***")
     username = input("what's your username? ")
